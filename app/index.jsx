@@ -1,8 +1,12 @@
-import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { Link, Redirect, router } from "expo-router";
+import { router } from "expo-router";
+import "react-native-url-polyfill/auto";
 import { images } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CustomButton from "./components/CustomButton";
+
+const handlePress = () => {router.push("/login")}
 
 export default function Index() {
   return (
@@ -15,12 +19,12 @@ export default function Index() {
           <Image
             source={images.logo}
             resizeMode="contain"
-            className="w-[130px] h-[84px]"
+            className="w-[136px] h-[84px]"
           />
           <Image
             source={images.cards}
             resizeMode="contain"
-            className="w-full h-[300px]"
+            className="w-[380px] h-[300px]"
           />
 
           <View className="relative mt-5">
@@ -35,14 +39,22 @@ export default function Index() {
             Exploration with Aora
           </Text>
 
-          <TouchableOpacity
-            onPress={() => router.push("/home")}
-            className={`bg-green-500  min-h-80 p-4`}
-          >
-            <Text>To Home</Text>
-          </TouchableOpacity>
+          <CustomButton title="Continue with Email" handlePress={handlePress} mt={50} />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "#ffa001",
+    width: "90%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 15,
+    borderRadius:7,
+    marginTop:50
+  },
+});
